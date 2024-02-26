@@ -1,4 +1,4 @@
-# streamlit-custom-component
+<!-- # streamlit-custom-component
 
 Streamlit component that allows you to do X
 
@@ -18,4 +18,4 @@ from my_component import my_component
 value = my_component()
 
 st.write(value)
-```
+``` -->
