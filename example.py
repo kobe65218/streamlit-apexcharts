@@ -5,16 +5,29 @@ import numpy as np
 
 
 
+df = pd.DataFrame({"test" : np.arange(10 ,20)  }   )
+
+df['test_2'] = np.arange(0 ,10)
+
+
+# df = df.T
+
+# df.loc['z' , : ] = list(np.arange(10 ,20)) + list( np.arange(0 ,10))
+
+st.write(df)
+
+
+df['z'] = 10
 
 
 
-df = pd.DataFrame({"test" : np.arange(10 ,20) , "test2" : [ f"c_{i}" for i in np.arange(10 ,20)]  }   )
+# df["test2"]  =  df["test2"].astype(pd.CategoricalDtype([ f"c_{i}" for i in np.arange(10 ,20)]))
 
-df["test2"]  =  df["test2"].astype(pd.CategoricalDtype([ f"c_{i}" for i in np.arange(10 ,20)]))
+# df["test3"] = np.arange(100 ,110)
 
-df.set_index("test2" , inplace= True)
+# df.set_index("test2" , inplace= True)
 
-df["test3"] = np.arange(100 ,110)
+
 
 # df["test4"] = np.arange(110 ,120)
 
@@ -43,13 +56,13 @@ options = {
               
             # "id": "basic-bar" , 
             
-            "type" : "heatmap" , 
+            "type" : "bubble" , 
             
             "group" : "test" , 
             
-            # "width" : 500 , 
-            
             "height" :'500'   , 
+            
+            'width'  : '500' , 
 
             "events" : {
                 
@@ -72,16 +85,16 @@ options = {
       # },
       
       
-      "y": {
-          "formatter": "(v) => `${parseFloat(v).toFixed(0)} %`",
-          "title": {
-              "formatter": "(v) => `${v} foamter`",
-          },
-      },
-      "z": {
-          "formatter":  "(v) => `${parseFloat(v).toFixed(0)} %`",
-          # title: 'Size: '
-      },
+      # "y": {
+      #     "formatter": "(v) => `${parseFloat(v).toFixed(0)} %`",
+      #     "title": {
+      #         "formatter": "(v) => `${v} foamter`",
+      #     },
+      # },
+      # "z": {
+      #     "formatter":  "(v) => `${parseFloat(v).toFixed(0)} %`",
+      #     # title: 'Size: '
+      # },
        
        
        
@@ -91,69 +104,71 @@ options = {
       } , 
      
      
-     "dataLabels" : {
+    #  "dataLabels" : {
        
-       "formatter": "(v) => `${parseFloat(v).toFixed(0)} %`",
+    #    "formatter": "(v) => `${parseFloat(v).toFixed(0)} %`",
        
        
-      },
+    #   },
      
      
-     "plotOptions" : {
+    #  "plotOptions" : {
        
-       "heatmap" : {
+    #    "heatmap" : {
          
-         "colorScale" : {
+    #      "colorScale" : {
            
-           "ranges"  : [
+    #        "ranges"  : [
              
-             {
+    #          {
                
-               "from" : -100 , 
+    #            "from" : -100 , 
                
-               "to" : 0   , 
+    #            "to" : 0   , 
                
-               "color" : "#00A100" ,
+    #            "color" : "#00A100" ,
                
-               "name" :  "neg return"
+    #            "name" :  "neg return"
             
-             } , 
+    #          } , 
              
-              {
+    #           {
                
-               "from" : 1 , 
+    #            "from" : 1 , 
                
-               "to" : 100   , 
+    #            "to" : 100   , 
                
-               "color" : "#FFB200" , 
+    #            "color" : "#FFB200" , 
                
-                "name" :  "pos return"
+    #             "name" :  "pos return"
             
-             } , 
+    #          } , 
              
              
              
              
              
-           ]
+    #        ]
            
            
            
-         }
+    #      }
          
          
          
-       }
+    #    }
        
        
        
-     } , 
+    #  } , 
        
-
+  # "plotOptions": {
+  #     "bubble": {
+  #       "zScaling": False,
        
        
        
-    #  } 
+  #    } } , 
      
      
           "xaxis" : {
@@ -164,27 +179,27 @@ options = {
                
               #  "range" : 50  , 
           
-             "labels" : {
+          #    "labels" : {
             
-               "formatter" :  '(v) => `${v}%` '
+          #      "formatter" :  '(v) => `${v}%` '
           
-          }
+          # }
           
           } , 
              
              
                
-          "yaxis" : {
+          # "yaxis" : {
           
-             "labels" : {
+          #    "labels" : {
             
-               "formatter" :  '(v) => `v ?` '
+          #      "formatter" :  '(v) => `v ?` '
           
-          }  , 
+          # }  , 
              
              
              
-             }  ,
+            #  }  ,
      
         # "xaxis" : {
             
@@ -286,7 +301,7 @@ options = {
 
 col1  , col2   =  st.columns(2)
 
-value_return  = streamlit_apexcharts( df  , options= options   , columns_types= { "test2" : "bar" } ,   key ="ttt"  )
+value_return  = streamlit_apexcharts( df  , options= options  ,   key ="ttt"  )
 
 
 # value_return  = streamlit_apexcharts( df.loc["2017"] , options= options   , columns_types= { "volume" : "bar" } ,   key ="ttt2"  )

@@ -24,28 +24,9 @@ class Streamlit_apexcharts extends StreamlitComponentBase<State> {
     // via `this.props.args`. Here, we access the "name" arg.
     var chart_dict = this.props.args["chart_dict"]
 
-    
-    // var ChangeFormater = {...chart_dict.options }
+    // console.log(chart_dict)
 
-    // // var ChangeFormater = {}
-
-    //  Object.keys(ChangeFormater).map( (k , i ) => {
-
-    //     if (k in {xaxis:[] , yaxis : [] }){
-
-    //         if ( "labels" in ChangeFormater[k] ) {
-
-    //           if ( "formatter" in ChangeFormater[k]["labels"] ) {
-
-    //             ChangeFormater[k]["labels"]["formatter"] = eval(ChangeFormater[k]["labels"]["formatter"])
-
-    //             // console.log("change to funtion ")
-    //           }
-    //         }
-
-    //       }
-    //   } )
-    
+    var width = 'width' in  chart_dict.options.chart ? chart_dict.options.chart.width : this.props.width
 
     // Streamlit sends us a theme object via props that we can use to ensure
     // that our component has visuals that match the active theme in a
@@ -76,7 +57,7 @@ class Streamlit_apexcharts extends StreamlitComponentBase<State> {
     // be available to the Python program.
     return (
       <span>
-        <StreamlitCharts chart_dict = {chart_dict}  width = {this.props.width}    ></StreamlitCharts>
+        <StreamlitCharts chart_dict = {chart_dict}  width = {width}    ></StreamlitCharts>
       </span>
     )
   }

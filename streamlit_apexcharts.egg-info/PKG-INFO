@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: streamlit_apexcharts
-Version: 0.0.1
+Version: 0.0.2
 Home-page: 
 Author: 
 Author-email: 
@@ -16,7 +16,7 @@ Requires-Dist: requests==2.31.0; extra == "devel"
 Requires-Dist: pytest-playwright-snapshot==1.0; extra == "devel"
 Requires-Dist: pytest-rerunfailures==12.0; extra == "devel"
 
-# streamlit-custom-component
+<!-- # streamlit-custom-component
 
 Streamlit component that allows you to do X
 
@@ -36,4 +36,4 @@ from my_component import my_component
 value = my_component()
 
 st.write(value)
-```
+``` -->

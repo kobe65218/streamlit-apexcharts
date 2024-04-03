@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 import streamlit as st 
 import pandas as pd 
 import numpy as np 
-
+import copy
 
 # Create a _RELEASE constant. We'll set this to False while we're developing
 # the component, and True when we're ready to package and distribute it.
@@ -57,12 +57,10 @@ def get_series( df  , chart_type  , columns_types ):
     
     data_columns = df.columns 
     
-    if chart_type  in [  "bar" , "line" , "area"  ,    ]  : 
+    if chart_type  in [  "bar" , "line" , "area"  ]  : 
 
         data_list = df.to_dict(orient = "index")
         
-        # ,  "type" : columns_types[i]  if i in columns_types else  chart_type 
-
         series = [  {"name" : i   ,  "type" :   columns_types[i]  if i in columns_types else  chart_type ,  "data" :  [  {"x":  d_k   , "y":  data_list[d_k][i] } for d_k  in data_list  ] }   for i in  data_columns ] 
         
     elif chart_type in ["heatmap"] : 
@@ -71,9 +69,21 @@ def get_series( df  , chart_type  , columns_types ):
         
         series = [  {"name" : i   ,  "data" :  [  {"x":  d_k   , "y":  data_list[d_k][i] } for d_k  in data_list  ] }   for i in  data_columns ] 
         
-
-        # print(series)
-
+    elif chart_type in ["bubble"] : 
+        
+        data_list = df.to_dict(orient = "index")
+        
+        if 'z' not in list(data_columns) :  
+            
+            raise Exception(f'use bubble chart not key z in ', 'data list')
+            
+        data_columns_ = copy.deepcopy(list(data_columns))
+            
+        data_columns_.pop(data_columns_.index('z'))
+        
+        series = [  {"name" : i   ,  "data" :  [  { "x":  d_k   , "y":  data_list[d_k][i]  , "z" :   data_list[d_k]['z'] } for d_k  in data_list  ] } for i in  data_columns_   ] 
+        
+        
     elif chart_type in ["candlestick"] : 
         
         series = []

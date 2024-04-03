@@ -184,7 +184,7 @@ function StreamlitCharts(props:any) {
 
     useEffect(  () => {
 
-      console.log("effect")
+
       var newOptions = changeOption(props.chart_dict.options)
 
 
@@ -198,27 +198,20 @@ function StreamlitCharts(props:any) {
 
     } , [JSON.stringify(props.chart_dict.options) ]
     )
-
-    console.log("rerender")
-
-
     return (
-        <div className="app"  >
-        <div className="row">
-          <div className="mixed-chart">
-
-            <Chart
+        <div className="test">
+         {/* <div className="row">
+           <div className="mixed-chart"> */}
+             <Chart
               options={ options}
               series={props.chart_dict.series} 
               type= { options.chart.type}
               width= {props.width}
               height= { options.chart.height}
               ref={ chart  }
-
-              
-            />
-          </div>
-        </div>
+             />
+          {/* </div>
+        </div> */}
       </div>
     );
   }
